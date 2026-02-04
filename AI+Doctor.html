@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI+ Doctor Interactive Module</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+.backface-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+body { background-color: #F8FAFC; font-family: sans-serif; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+
+const App = () => {
+  const [currentView, setCurrentView] = React.useState('lobby');
+  const [xp, setXp] = React.useState(0);
+  const [completedStages, setCompletedStages] = React.useState([]);
+  const [unlockedStages, setUnlockedStages] = React.useState(['neurons']);
+  
+  // Game states
+  const [cardIdx, setCardIdx] = React.useState(0);
+  const [isFlipped, setIsFlipped] = React.useState(false);
+  const [viewedCards, setViewedCards] = React.useState([0]);
+  const [imgIdx, setImgIdx] = React.useState(0);
+  const [openStep, setOpenStep] = React.useState(1);
+  const [examQ, setExamQ] = React.useState(0);
+  const [examSel, setExamSel] = React.useState(null);
+  const [examDone, setExamDone] = React.useState(false);
+
+  const isStandalone = true;
+
+  const SvgIcon = ({ name, className = "w-6 h-6" }) => {
+    const icons = {
+      brain: <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.04-4.44 2.5 2.5 0 0 1 2-4.5 2.5 2.5 0 0 1 0-4 2.5 2.5 0 0 1 2.5-2.5zM14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.04-4.44 2.5 2.5 0 0 0-2-4.5 2.5 2.5 0 0 0 0-4 2.5 2.5 0 0 0-2.5-2.5z"/>,
+      activity: <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>,
+      camera: <g><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></g>,
+      layers: <g><polygon points="12 2 2 7 12 12 22 7 12 2"/><polygon points="2 17 12 22 22 17"/><polygon points="2 12 12 17 22 12"/></g>,
+      microscope: <path d="M6 18h8M3 22h18M14 22a7 7 0 1 0 0-14h-1M9 14h2M9 12a2 2 0 1 1-2-2V6h6v4.13M12 20V5a2 2 0 0 0-2-2H8"/>,
+      check: <polyline points="20 6 9 17 4 12"/>,
+      chevron: <polyline points="9 18 15 12 9 6"/>,
+      rotate: <g><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><polyline points="21 3 21 8 16 8"/></g>,
+      trophy: <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22M18 2H6v7a6 6 0 0 0 12 0V2Z"/>,
+    };
+    return <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>{icons[name]}</svg>;
+  };
+
+  const handleStageComplete = (id, bonusXp) => {
+    if (!completedStages.includes(id)) {
+      setCompletedStages(prev => [...prev, id]);
+      setXp(prev => prev + bonusXp);
+      const stageIds = ['neurons', 'imaging', 'lifecycle', 'detective'];
+      const currentIndex = stageIds.indexOf(id);
+      if (currentIndex < stageIds.length - 1) {
+        setUnlockedStages(prev => [...new Set([...prev, stageIds[currentIndex + 1]])]);
+      }
+    }
+    setCurrentView('lobby');
+  };
+
+  const renderContent = () => {
+    if (currentView === 'lobby') {
+      const stageItems = [
+        { id: 'neurons', label: 'Neural Flip', icon: 'brain' },
+        { id: 'imaging', label: 'Modalities', icon: 'camera' },
+        { id: 'lifecycle', label: 'Life Cycle', icon: 'layers' },
+        { id: 'detective', label: 'Resident Exam', icon: 'microscope' }
+      ];
+      return (
+        <div className="p-8 flex-grow">
+          <div className="mb-6">
+            <div className="flex justify-between items-end mb-2">
+              <h2 className="text-xs font-black text-slate-400 uppercase tracking-widest">Progress</h2>
+              <span className="text-xs font-bold text-blue-600">{Math.round((completedStages.length / 4) * 100)}%</span>
+            </div>
+            <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+              <div className="h-full bg-blue-500 transition-all duration-700" style={{ width: `${(completedStages.length / 4) * 100}%` }} />
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            {stageItems.map((s) => {
+              const isUnlocked = unlockedStages.includes(s.id);
+              const isDone = completedStages.includes(s.id);
+              return (
+                <button 
+                  key={s.id} 
+                  disabled={!isUnlocked} 
+                  onClick={() => {
+                    setCurrentView(s.id);
+                    if(s.id === 'neurons') { setCardIdx(0); setIsFlipped(false); setViewedCards([0]); }
+                    if(s.id === 'imaging') setImgIdx(0);
+                    if(s.id === 'lifecycle') setOpenStep(1);
+                    if(s.id === 'detective') { setExamQ(0); setExamSel(null); setExamDone(false); }
+                  }}
+                  className={`relative aspect-square flex flex-col items-center justify-center p-4 rounded-[2.5rem] border-2 transition-all ${isUnlocked ? 'bg-white border-blue-50 shadow-lg hover:scale-[1.02]' : 'bg-slate-50 opacity-40 grayscale pointer-events-none'}`}
+                >
+                  <div className={`w-12 h-12 rounded-2xl mb-3 flex items-center justify-center ${isDone ? 'bg-green-100 text-green-600' : 'bg-blue-50 text-blue-600'}`}>
+                    <SvgIcon name={s.icon} />
+                  </div>
+                  <span className="text-[10px] font-black uppercase text-center text-slate-700">{s.label}</span>
+                  {isDone && <div className="absolute top-4 right-4 text-green-500"><SvgIcon name="check" className="w-4 h-4" /></div>}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      );
+    }
+    
+    if (currentView === 'neurons') {
+      const cards = [
+        { f: "Dendrites", b: "Input: Receives signals from other neurons.", t: "Biological" },
+        { f: "Synapse", b: "Weights: Determines the strength of the connection.", t: "Biological vs Artificial" },
+        { f: "Soma", b: "Summation: Aggregates all incoming inputs.", t: "Biological vs Artificial" },
+        { f: "Axon", b: "Output: Transmits the final signal forward.", t: "Biological vs Artificial" },
+      ];
+      return (
+        <div className="p-6 flex flex-col items-center flex-grow">
+          <div className="relative w-full max-w-[280px] h-[340px] mb-8" style={{ perspective: '1000px' }}>
+            <div onClick={() => setIsFlipped(!isFlipped)} className={`relative w-full h-full transition-transform duration-500 cursor-pointer shadow-2xl rounded-[2.5rem] ${isFlipped ? '[transform:rotateY(180deg)]' : ''}`} style={{ transformStyle: 'preserve-3d' }}>
+              <div className="absolute inset-0 backface-hidden bg-white border-2 border-blue-50 flex flex-col items-center justify-center p-8 rounded-[2.5rem]">
+                <span className="text-[10px] font-black text-blue-500 uppercase tracking-widest mb-4">{cards[cardIdx].t}</span>
+                <p className="text-3xl font-black text-slate-800 text-center">{cards[cardIdx].f}</p>
+                <div className="mt-12 flex items-center gap-2 text-slate-400 text-xs font-bold animate-pulse"><SvgIcon name="rotate" className="w-4 h-4" /> TAP TO FLIP</div>
+              </div>
+              <div className="absolute inset-0 backface-hidden bg-blue-600 text-white flex flex-col items-center justify-center p-10 rounded-[2.5rem] [transform:rotateY(180deg)] text-center font-bold text-lg leading-relaxed">
+                {cards[cardIdx].b}
+              </div>
+            </div>
+          </div>
+          <div className="w-full space-y-3 px-2">
+            <button onClick={() => { setIsFlipped(false); const next = (cardIdx + 1) % cards.length; setCardIdx(next); setViewedCards(prev => [...new Set([...prev, next])]); }} className="w-full bg-slate-100 py-4 rounded-2xl font-bold flex items-center justify-center gap-2 text-slate-700">Next Card <SvgIcon name="chevron" className="w-5 h-5" /></button>
+            {viewedCards.length === cards.length && <button onClick={() => handleStageComplete('neurons', 25)} className="w-full bg-blue-600 text-white py-4 rounded-2xl font-bold shadow-lg">Module Complete</button>}
+          </div>
+        </div>
+      );
+    }
+
+    if (currentView === 'imaging') {
+      const slides = [
+        { t: "X-Ray", d: "2D Foundation: Best for bones and basic lung pathology.", c: "bg-slate-50 text-slate-600" },
+        { t: "CT Scan", d: "3D Detail: Cross-sectional slices for complex internal anatomy.", c: "bg-blue-50 text-blue-600" },
+        { t: "MRI", d: "Soft Tissue: High-res imaging for nerves and ligaments.", c: "bg-indigo-50 text-indigo-600" },
+        { t: "Histopathology", d: "Cellular: AI analyzes microscopic slides for malignancy.", c: "bg-purple-50 text-purple-600" }
+      ];
+      return (
+        <div className="p-6 flex flex-col flex-grow">
+          <div className={`flex-grow rounded-[2.5rem] ${slides[imgIdx].c.split(' ')[0]} flex flex-col items-center justify-center p-10 text-center transition-colors`}>
+            <h3 className="text-3xl font-black mb-4 text-slate-800">{slides[imgIdx].t}</h3>
+            <p className="text-slate-600 text-lg leading-relaxed max-w-xs">{slides[imgIdx].d}</p>
+          </div>
+          <div className="mt-8 flex justify-center gap-4">
+            <button disabled={imgIdx === 0} onClick={() => setImgIdx(imgIdx - 1)} className="p-4 bg-white border-2 border-slate-100 rounded-2xl disabled:opacity-20"><SvgIcon name="rotate" className="w-6 h-6 rotate-180" /></button>
+            <button disabled={imgIdx === slides.length - 1} onClick={() => setImgIdx(imgIdx + 1)} className="p-4 bg-white border-2 border-slate-100 rounded-2xl disabled:opacity-20"><SvgIcon name="chevron" className="w-6 h-6" /></button>
+          </div>
+          {imgIdx === slides.length - 1 && <button onClick={() => handleStageComplete('imaging', 30)} className="mt-6 w-full bg-blue-600 text-white py-4 rounded-2xl font-bold shadow-lg">Claim 30 XP</button>}
+        </div>
+      );
+    }
+
+    if (currentView === 'lifecycle') {
+      const steps = [
+        { id: 1, t: "Collection", d: "Gathering massive, diverse datasets for robust AI training." },
+        { id: 2, t: "Labeling", d: "Clinicians annotate images to teach AI what a 'finding' looks like." },
+        { id: 3, t: "Training", d: "Neural networks adjust weights to minimize diagnostic errors." },
+        { id: 4, t: "Validation", d: "Evaluating the model on brand new patient data for safety." }
+      ];
+      return (
+        <div className="p-6 space-y-3 flex-grow overflow-y-auto">
+          {steps.map((s) => (
+            <div key={s.id} className={`rounded-2xl border-2 p-5 transition-all ${openStep === s.id ? 'border-blue-500 bg-blue-50/50' : 'border-slate-50 bg-white'}`}>
+              <button onClick={() => setOpenStep(s.id)} className="w-full flex justify-between items-center font-bold text-slate-800">
+                <span className="flex items-center gap-3"><span className={`w-6 h-6 rounded-md flex items-center justify-center text-[10px] ${openStep === s.id ? 'bg-blue-600 text-white' : 'bg-slate-100'}`}>0{s.id}</span> {s.t}</span>
+                <SvgIcon name="chevron" className={`w-4 h-4 transition-transform ${openStep === s.id ? 'rotate-90 text-blue-500' : 'text-slate-300'}`} />
+              </button>
+              {openStep === s.id && <p className="mt-3 text-sm text-slate-500 font-medium leading-relaxed pl-9">{s.d}</p>}
+            </div>
+          ))}
+          {openStep === 4 && <button onClick={() => handleStageComplete('lifecycle', 50)} className="w-full mt-6 bg-slate-900 text-white py-4 rounded-2xl font-bold shadow-xl">Complete Workflow</button>}
+        </div>
+      );
+    }
+
+    if (currentView === 'detective') {
+      const qs = [
+        { q: "Which CNN layer detects basic edges?", o: ["Pooling Layer", "Convolutional Layer", "Output Layer"], c: 1 },
+        { q: "Best modality for soft tissue (nerves/ligaments)?", o: ["X-Ray", "CT Scan", "MRI"], c: 2 }
+      ];
+      if (examDone) return (
+        <div className="p-10 text-center flex-grow flex flex-col items-center justify-center">
+          <div className="w-24 h-24 bg-yellow-50 rounded-full flex items-center justify-center mb-6 text-yellow-500"><SvgIcon name="trophy" className="w-12 h-12" /></div>
+          <h2 className="text-3xl font-black text-slate-800">Certified Resident!</h2>
+          <p className="text-slate-500 mt-2 font-medium">You have mastered Module 2.</p>
+          <button onClick={() => { setCompletedStages([]); setUnlockedStages(['neurons']); setXp(0); setCurrentView('lobby'); setExamDone(false); setExamQ(0); }} className="text-blue-600 font-bold mt-8 hover:underline">Reset Residency</button>
+        </div>
+      );
+      return (
+        <div className="p-8 flex flex-col flex-grow">
+          <h3 className="text-xl font-black text-slate-800 mb-8 leading-tight">{qs[examQ].q}</h3>
+          {qs[examQ].o.map((opt, i) => (
+            <button 
+              key={i} 
+              onClick={() => { 
+                setExamSel(i); 
+                if(i === qs[examQ].c) {
+                  setTimeout(() => {
+                    if(examQ < qs.length - 1) { setExamQ(prev => prev + 1); setExamSel(null); }
+                    else { setExamDone(true); setXp(prev => prev + 100); }
+                  }, 600);
+                }
+              }} 
+              className={`w-full p-5 mb-3 rounded-2xl border-2 text-left font-bold transition-all ${examSel === i ? (i === qs[examQ].c ? 'border-green-500 bg-green-50 text-green-700' : 'border-red-500 bg-red-50 text-red-700') : 'border-slate-100 hover:border-blue-200'}`}
+            >
+              {opt}
+            </button>
+          ))}
+        </div>
+      );
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center p-4 font-sans">
+      <div className="w-full max-w-md">
+        <header className="flex items-center justify-between mb-6 bg-white p-5 rounded-[2rem] shadow-sm border border-slate-100">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center text-white shadow-lg"><SvgIcon name="activity" /></div>
+            <div>
+              <h1 className="text-sm font-black uppercase tracking-tighter">AI+ Doctor</h1>
+              <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Residency Mode</p>
+            </div>
+          </div>
+          <div className="px-5 py-2 bg-slate-50 rounded-2xl border border-slate-100 text-center min-w-[70px]">
+            <div className="text-[10px] font-bold text-slate-400 uppercase">XP</div>
+            <div className="text-xl font-black text-blue-600">{xp}</div>
+          </div>
+        </header>
+
+        <main className="bg-white rounded-[3rem] shadow-2xl border border-slate-100 min-h-[560px] flex flex-col overflow-hidden">
+          {currentView !== 'lobby' && (
+            <div className="p-5 border-b border-slate-50 flex items-center justify-between bg-slate-50/30">
+              <button onClick={() => setCurrentView('lobby')} className="p-3 bg-white shadow-sm rounded-xl text-slate-400 hover:text-blue-600"><SvgIcon name="rotate" className="w-5 h-5" /></button>
+              <h2 className="text-[10px] font-black uppercase tracking-widest text-slate-400">Activity Active</h2>
+              <div className="w-11" />
+            </div>
+          )}
+          <div className="flex-grow flex flex-col">
+            {renderContent()}
+          </div>
+        </main>
+        <p className="mt-8 text-center text-[10px] font-bold text-slate-400 uppercase tracking-widest">© 2025 AI+ Doctor • Interactive learning System</p>
+      </div>
+    </div>
+  );
+};
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
+</script>
+</body>
+</html>

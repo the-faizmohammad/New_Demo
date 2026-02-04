@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Hidden Heart - Module 1</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #F0F2F5; }
+    .slide-enter { animation: fadeIn 0.4s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+  <div class="w-full max-w-6xl h-[85vh] bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col border border-white/50">
+    <div class="h-16 bg-white border-b border-slate-100 px-8 flex items-center justify-between flex-shrink-0">
+      <div class="flex items-center gap-3">
+        <div class="bg-red-600 p-2 rounded-xl text-white">❤</div>
+        <span class="font-black text-xs tracking-widest text-slate-800 uppercase">The Hidden Heart</span>
+      </div>
+    </div>
+
+    <div id="slide-container" class="flex-grow p-12 overflow-y-auto bg-gradient-to-br from-[#FFFBF5] to-white slide-enter"></div>
+
+    <div class="h-20 bg-white border-t border-slate-100 px-8 flex items-center justify-between flex-shrink-0">
+      <button id="prev-btn" class="flex items-center gap-2 font-black text-xs uppercase tracking-widest text-slate-500 hover:text-red-600 transition-all disabled:opacity-20">← Previous</button>
+      <div id="progress-dots" class="flex gap-2"></div>
+      <button id="next-btn" class="flex items-center gap-2 font-black text-xs uppercase tracking-widest text-slate-500 hover:text-red-600 transition-all disabled:opacity-20">Next →</button>
+    </div>
+  </div>
+
+  <script>
+    const slides = [{"id":"start","type":"title","title":"The Hidden Heart","subtitle":"Beyond the biological pump lies the true center of your existence.","content":"Module 1: The Core"},{"id":"definition","type":"info","title":"What is the \"Heart\"?","content":"Understanding the multi-faceted nature of our center through linguistic and biological lenses.","details":[{"label":"The Organ","text":"A hollow muscular organ that acts as a force pump maintaining circulation."},{"label":"The Character","text":"One's innermost character, feelings, or inclinations. The seat of personality."},{"label":"The Center","text":"The central or most important part of something. The vital core."}]},{"id":"chambers","type":"explorer","title":"The 4 Chambers of the Self","subtitle":"Explore the spiritual anatomy of the inner man."},{"id":"scripture","type":"quote","text":"Keep thy heart with all diligence; for out of it are the issues of life.","cite":"Proverbs 4:23","context":"To \"keep\" means to guard and preserve. Everything in your life flows from this spiritual center."},{"id":"quiz","type":"quiz","question":"Which statement best defines the \"Hidden Heart\"?","options":[{"id":"a","text":"It is primarily a muscular organ for pumping blood.","correct":false},{"id":"b","text":"It is the center of our intellect, emotion, will, and conscience.","correct":true},{"id":"c","text":"It refers only to our romantic feelings.","correct":false}]},{"id":"end","type":"title","title":"Deepening the Heart","subtitle":"Apply what you have learned to your own life journey.","content":"Module 1 Conclusion"}];
+    const chambers = [{"id":"intellect","title":"Intellect","icon":{},"text":"The seat of thoughts and reasoning."},{"id":"emotion","title":"Emotion","icon":{},"text":"The center of feelings and desires."},{"id":"will","title":"Will","icon":{},"text":"The driver's seat of choices and decisions."},{"id":"conscience","title":"Conscience","icon":{},"text":"Your internal moral compass of right and wrong."}];
+    let currentSlide = 0;
+    let quizResult = null;
+    let visited = {};
+
+    const container = document.getElementById('slide-container');
+    const dotsContainer = document.getElementById('progress-dots');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+
+    function selectQuiz(isCorrect) {
+      quizResult = isCorrect ? 'correct' : 'wrong';
+      render();
+    }
+
+    function visitChamber(id) {
+      visited[id] = true;
+      render();
+    }
+
+    function render() {
+      const slide = slides[currentSlide];
+      container.innerHTML = '';
+      container.classList.remove('slide-enter');
+      void container.offsetWidth;
+      container.classList.add('slide-enter');
+
+      if (slide.type === 'title') {
+        container.innerHTML = `<div class="flex flex-col items-center justify-center min-h-full text-center space-y-6">
+          <div class="text-6xl text-red-600">❤</div>
+          <h1 class="text-5xl font-bold text-slate-800 tracking-tight">${slide.title}</h1>
+          <p class="text-xl text-slate-600 max-w-xl">${slide.subtitle}</p>
+          <div class="px-6 py-2 bg-red-600 text-white font-bold rounded-full uppercase tracking-widest text-sm shadow-lg">${slide.content}</div>
+        </div>`;
+      } else if (slide.type === 'info') {
+        container.innerHTML = `<h2 class="text-3xl font-bold border-l-8 border-red-600 pl-6 mb-8">${slide.title}</h2>
+          <p class="text-lg text-slate-600 mb-8">${slide.content}</p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            ${slide.details.map(d => `<div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100"><div class="font-bold text-red-600 mb-3 text-lg">${d.label}</div><p class="text-slate-700 text-sm">${d.text}</p></div>`).join('')}
+          </div>`;
+      } else if (slide.type === 'explorer') {
+        container.innerHTML = `<h2 class="text-3xl font-bold mb-2">${slide.title}</h2><p class="text-slate-600 mb-8">${slide.subtitle}</p>
+          <div class="grid grid-cols-2 gap-4">
+            ${chambers.map(c => `<button onclick="visitChamber('${c.id}')" class="p-6 rounded-2xl border-2 transition-all ${visited[c.id] ? 'bg-white border-red-500 shadow-lg' : 'bg-slate-50 border-slate-200'}">
+              <div class="font-bold text-lg">${c.title}</div>
+              ${visited[c.id] ? `<p class="text-xs text-slate-500 mt-2">${c.text}</p>` : ''}
+            </button>`).join('')}
+          </div>`;
+      } else if (slide.type === 'quote') {
+        container.innerHTML = `<div class="h-full flex flex-col items-center justify-center text-center px-12">
+          <div class="text-4xl text-red-200 mb-6 font-serif">"</div>
+          <blockquote class="text-4xl font-serif italic text-slate-800 mb-6 leading-tight">${slide.text}</blockquote>
+          <cite class="text-xl font-bold text-red-600">— ${slide.cite}</cite>
+        </div>`;
+      } else if (slide.type === 'quiz') {
+        container.innerHTML = `<div class="h-full flex flex-col justify-center max-w-2xl mx-auto">
+          <h2 class="text-3xl font-bold mb-8 text-slate-800">${slide.question}</h2>
+          <div class="space-y-4">
+            ${slide.options.map(opt => `<button onclick="selectQuiz(${opt.correct})" class="w-full p-5 rounded-2xl border-2 bg-white text-left font-medium hover:border-slate-400 ${quizResult === 'correct' && opt.correct ? 'border-green-500 bg-green-50 text-green-800' : ''}">${opt.text}</button>`).join('')}
+          </div>
+          ${quizResult ? `<div class="mt-6 p-4 rounded-xl font-bold ${quizResult === 'correct' ? 'text-green-600 bg-green-50' : 'text-red-600 bg-red-50'}">
+            ${quizResult === 'correct' ? '✓ Correct! You understand the depth of the heart.' : '⚠ Try again. The heart is the spiritual center.'}
+          </div>` : ''}
+        </div>`;
+      }
+
+      dotsContainer.innerHTML = slides.map((_, i) => `<div class="h-1.5 rounded-full ${i === currentSlide ? 'bg-red-600 w-8' : 'bg-slate-200 w-2'}"></div>`).join('');
+      prevBtn.disabled = currentSlide === 0;
+      nextBtn.disabled = currentSlide === slides.length - 1;
+    }
+
+    prevBtn.addEventListener('click', () => { if(currentSlide > 0) { currentSlide--; quizResult = null; render(); } });
+    nextBtn.addEventListener('click', () => { if(currentSlide < slides.length - 1) { currentSlide++; quizResult = null; render(); } });
+    render();
+  </script>
+</body>
+</html>
