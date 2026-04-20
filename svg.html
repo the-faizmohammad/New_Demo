@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Divider</title>
+<style>
+  body {
+    margin: 0;
+  }
+
+  .divider {
+    --color-background: #003553;
+    --color-background-contrast: #fff;
+
+    background: var(--color-background);
+    box-shadow: rgb(0, 53, 83) 0px 1px 0px;
+    padding: 3rem 0;
+    position: relative;
+  }
+
+  /* Triangle notch */
+  .divider::after {
+    content: "";
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    width: 0;
+    height: 0;
+    border-left: 60px solid transparent;
+    border-right: 60px solid transparent;
+    border-top: 40px solid #003553;
+  }
+</style>
+</head>
+
+<body>
+  <div class="divider"></div>
+</body>
+</html>
