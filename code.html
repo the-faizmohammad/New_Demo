@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Stacey Cleaning | Professional Cleaning Services</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;family=Inter:wght@300;400;500;600;700;800&amp;family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        stacey: {
+                            navy: '#0B2046',
+                            pink: '#FF4281',
+                            lightpink: '#FFF0F5',
+                            gray: '#F8F9FA',
+                            text: '#333333',
+                            green: '#25D366'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        script: ['Great Vibes', 'cursive'],
+                        serif: ['Playfair Display', 'serif']
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(11,32,70,0.08)',
+                        'pink-glow': '0 4px 20px -2px rgba(255,66,129,0.3)',
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .bg-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ff4281' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .heading-script {
+            font-family: 'Great Vibes', cursive;
+            line-height: 1.1;
+        }
+
+        .hero-bg {
+            background-image: linear-gradient(to right, rgba(11,32,70,0.9) 0%, rgba(11,32,70,0.7) 40%, rgba(11,32,70,0.3) 100%), url('https://lh3.googleusercontent.com/aida/AP1WRLvRBwBLYISIbhWwokyCkAGvIVhLOQnt8WNoxVprPTONNY0YL4FJ0OV5T9rlUCNOHMyU_BwrnpdpYJ3ztRwRIz-KfN5rc8OuH35da1x4D64AdyT58KNjnJTJY7BHMaF6j4wbImhTVaM-WMQtSFHnMPEUMbXUVMr3JJtED3m4QwFONYEJ-_kzOkqb1sCVpK23YZ7S4wP3HZ4A3dRWIvJhlnGx0piMGEYCk2uu-5FbElJJSXp159OQvtp_RTsY');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-bg {
+                background-image: linear-gradient(to bottom, rgba(11,32,70,0.95) 0%, rgba(11,32,70,0.8) 60%, rgba(11,32,70,0.4) 100%), url('https://lh3.googleusercontent.com/aida/AP1WRLvRBwBLYISIbhWwokyCkAGvIVhLOQnt8WNoxVprPTONNY0YL4FJ0OV5T9rlUCNOHMyU_BwrnpdpYJ3ztRwRIz-KfN5rc8OuH35da1x4D64AdyT58KNjnJTJY7BHMaF6j4wbImhTVaM-WMQtSFHnMPEUMbXUVMr3JJtED3m4QwFONYEJ-_kzOkqb1sCVpK23YZ7S4wP3HZ4A3dRWIvJhlnGx0piMGEYCk2uu-5FbElJJSXp159OQvtp_RTsY');
+            }
+        }
+
+        .img-overlay-gradient {
+            background: linear-gradient(to top, rgba(11,32,70,0.8) 0%, rgba(11,32,70,0) 100%);
+        }
+
+        .text-balance {
+            text-wrap: balance;
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="font-sans text-stacey-text bg-white selection:bg-stacey-pink selection:text-white">
+<!-- Navigation -->
+<nav class="fixed w-full bg-white/95 backdrop-blur-sm z-50 shadow-sm transition-all duration-300" id="navbar">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-20">
+<!-- Logo -->
+<div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+<img alt="Stacey Cleaning Logo" class="h-16 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDWueU8fkzbNsz8_lBZquEmCrX4HsASBnE8zPy9uZBP76tvFSh4KG_fnVl8YOFZxBl_T1nv0yCQWlyP3P__UOtkEwwOUrS6VmnQ4NtGBWBItHPULTiI-wmLmlZ5pZwq1tO15wbPpNwAg1y5TkQjATxKIUPhxL20TpbXxss_Lfd9mE7Q5-Tp4qRv-Ya3W0nxhfFrl8IxlOn9j-n2jbF4Wy9lRMfYAZe2CUM4_YClAd3jyScnfVs0EIxBEu5V0d8Bm6rWEI"/>
+</div>
+<!-- Desktop Menu -->
+<div class="hidden md:flex items-center space-x-8">
+<a class="font-semibold text-stacey-navy hover:text-stacey-pink transition-colors text-base" href="#about">About Us</a>
+<a class="font-semibold text-stacey-navy hover:text-stacey-pink transition-colors text-base" href="#services">Services</a>
+<a class="font-semibold text-stacey-navy hover:text-stacey-pink transition-colors text-base" href="#our-work">Our Work</a>
+<a class="font-semibold text-stacey-navy hover:text-stacey-pink transition-colors text-base" href="#reviews">Reviews</a>
+<a class="font-semibold text-stacey-navy hover:text-stacey-pink transition-colors text-base" href="#areas">Service Areas</a>
+<a class="bg-stacey-pink text-white px-6 py-2.5 rounded-full font-semibold hover:bg-pink-600 transition-colors shadow-pink-glow hover:shadow-lg transform hover:-translate-y-0.5 duration-200 text-base" href="#contact">Get a Quote</a>
+</div>
+<!-- Mobile Menu Button -->
+<div class="md:hidden flex items-center">
+<button class="text-stacey-navy hover:text-stacey-pink focus:outline-none p-2" id="mobile-menu-btn">
+<i class="fas fa-bars text-2xl"></i>
+</button>
+</div>
+</div>
+</div>
+<!-- Mobile Menu Panel -->
+<div class="hidden md:hidden bg-white border-t border-gray-100 shadow-lg absolute w-full" id="mobile-menu">
+<div class="px-4 pt-2 pb-6 space-y-1">
+<a class="block px-3 py-3 text-base font-medium text-stacey-navy hover:text-stacey-pink hover:bg-stacey-lightpink rounded-md transition-colors mobile-link" href="#about">About Us</a>
+<a class="block px-3 py-3 text-base font-medium text-stacey-navy hover:text-stacey-pink hover:bg-stacey-lightpink rounded-md transition-colors mobile-link" href="#services">Services</a>
+<a class="block px-3 py-3 text-base font-medium text-stacey-navy hover:text-stacey-pink hover:bg-stacey-lightpink rounded-md transition-colors mobile-link" href="#our-work">Our Work</a>
+<a class="block px-3 py-3 text-base font-medium text-stacey-navy hover:text-stacey-pink hover:bg-stacey-lightpink rounded-md transition-colors mobile-link" href="#reviews">Reviews</a>
+<a class="block px-3 py-3 text-base font-medium text-stacey-navy hover:text-stacey-pink hover:bg-stacey-lightpink rounded-md transition-colors mobile-link" href="#areas">Service Areas</a>
+<div class="mt-4 px-3">
+<a class="block w-full text-center bg-stacey-pink text-white px-6 py-3 rounded-full font-semibold text-base shadow-pink-glow mobile-link" href="#contact">Get a Quote</a>
+</div>
+</div>
+</div>
+</nav>
+<!-- SECTION 1: HERO -->
+<section class="relative pt-24 min-h-[90vh] flex items-center hero-bg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 py-16 lg:py-0">
+<div class="max-w-2xl lg:w-3/5">
+<h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-4 tracking-tight reveal active">
+                    Professional Cleaning<br/>Services You Can Trust
+                </h1>
+<p class="text-lg md:text-xl text-gray-200 mb-10 max-w-lg leading-relaxed font-medium reveal active" style="transition-delay: 100ms;">
+                    Top-rated residential and commercial cleaning. Reclaim your time and come back to a spotless space. Satisfaction guaranteed.
+                </p>
+<div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 reveal active" style="transition-delay: 200ms;">
+<a class="inline-flex justify-center items-center px-8 py-4 border border-transparent text-lg font-bold rounded-full text-white bg-stacey-pink hover:bg-pink-600 shadow-pink-glow hover:shadow-lg transform hover:-translate-y-1 transition-all duration-200" href="#contact">
+                        Request Your Free Quote
+                    </a>
+<a class="inline-flex justify-center items-center px-8 py-4 border-2 border-white text-lg font-bold rounded-full text-white bg-transparent hover:bg-white hover:text-stacey-navy transform hover:-translate-y-1 transition-all duration-200" href="tel:+1234567890">
+<i class="fas fa-phone-alt mr-2"></i> Call Us Today
+                    </a>
+</div>
+<div class="mt-12 flex items-center space-x-4 reveal bg-white/10 backdrop-blur-md p-4 rounded-2xl w-fit border border-white/20 active" style="transition-delay: 300ms;">
+<div class="text-left">
+<div class="flex text-yellow-400 text-xl mb-1">
+<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+</div>
+<div class="text-sm font-medium text-white">
+                            Rated <strong>Excellent</strong> on Google &amp; Yelp
+                        </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 2: ABOUT US -->
+<section class="py-24 bg-white relative overflow-hidden" id="about">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+<div class="flex flex-col lg:flex-row items-center gap-16">
+<!-- Text Content -->
+<div class="w-full lg:w-1/2 reveal active">
+<span class="text-stacey-pink font-bold uppercase tracking-wider text-sm mb-2 block">Why Us</span>
+<h2 class="text-4xl md:text-5xl font-extrabold text-stacey-navy mb-6 text-balance leading-tight">
+                        Meet the Team Behind Your Clean Home
+                    </h2>
+<p class="text-gray-600 text-lg md:text-xl mb-6 leading-relaxed">
+                        At Stacey Cleaning, cleaning is personal. We know that letting someone into your home requires trust. That’s why we’ve built a team of dedicated professionals who treat your space with the same care, respect, and attention to detail as they would their own.
+                    </p>
+<p class="text-gray-600 text-lg md:text-xl mb-8 leading-relaxed">
+<strong>More Than Cleaning — We Give You Time Back</strong><br/>
+                        Between work, family, and life’s daily demands, keeping up with housework can feel overwhelming. Our mission is simple: to take the burden of cleaning off your shoulders so you can focus on what truly matters.
+                    </p>
+<div class="grid grid-cols-2 gap-6 mb-8 text-base md:text-lg">
+<div class="flex items-center space-x-3">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-stacey-lightpink flex items-center justify-center text-stacey-pink">
+<i class="fa-solid fa-check text-lg"></i>
+</div>
+<span class="font-semibold text-stacey-navy">Fully Insured</span>
+</div>
+<div class="flex items-center space-x-3">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-stacey-lightpink flex items-center justify-center text-stacey-pink">
+<i class="fa-solid fa-check text-lg"></i>
+</div>
+<span class="font-semibold text-stacey-navy">Trained Staff</span>
+</div>
+<div class="flex items-center space-x-3">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-stacey-lightpink flex items-center justify-center text-stacey-pink">
+<i class="fa-solid fa-check text-lg"></i>
+</div>
+<span class="font-semibold text-stacey-navy">Eco-Friendly</span>
+</div>
+<div class="flex items-center space-x-3">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-stacey-lightpink flex items-center justify-center text-stacey-pink">
+<i class="fa-solid fa-check text-lg"></i>
+</div>
+<span class="font-semibold text-stacey-navy">Satisfaction Guarantee</span>
+</div>
+</div>
+</div>
+<!-- Image Content -->
+<div class="w-full lg:w-1/2 relative reveal active">
+<div class="relative rounded-3xl overflow-hidden shadow-2xl"><img alt="Stacey Cleaning Professional Team Member" class="w-full h-auto object-cover aspect-square border-[12px] border-stacey-pink rounded-3xl" src="https://lh3.googleusercontent.com/aida/AP1WRLvd7hVc-jAzRDBM5dc5zIF1qIB5JFd80VJRIE_0QeJsp_IqMcG8nY83F0LzE10JnvC9JdGsuz7CStGkin_xHf7wCqJ8RnOCjpmv6tarR_3XslgLAR7Knmj111U9-BQKpLHXu7Ywrrg4Nfe62QisxvzvtM1FMHfcL1-3TCwErOd8ztoYtbwriMj_AzXw0_TD0O1Cn6o1f1e1JTG8MIUYLQZvRkTyzUncWFrE0vPLHFQOFA5RE-evXHDSyjJ9"/></div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3: SERVICES GRID -->
+<section class="py-24 bg-stacey-gray" id="services">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16 reveal active">
+<span class="text-stacey-pink font-bold uppercase tracking-wider text-sm mb-2 block">Our Services</span>
+<h2 class="text-4xl md:text-5xl font-extrabold text-stacey-navy mb-4">
+                    Cleaning Solutions for Every Need
+                </h2>
+<p class="text-gray-600 max-w-3xl mx-auto text-lg md:text-xl">
+                    Every space is different. Whether you need a quick touch-up or a comprehensive deep clean, we have a service tailored for you.
+                </p>
+<p class="text-stacey-pink font-bold mt-4 text-lg">
+                    Frequency: Weekly • Biweekly • Monthly • One-Time Cleaning
+                </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 reveal active"><!-- Residential Cleaning -->
+<div class="group relative h-96 rounded-3xl overflow-hidden shadow-soft cursor-pointer">
+<img alt="Residential Cleaning" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida/AP1WRLsYihZsWkMGpPSghQ2H647gV_YQg4oqs5OMqgQF1yh7NQz-wtNRA2wSIgWWXnYMGn9AKmIE_BJ9d-Ew3Dj3wM5Z0hF5aKIjHhPzf3Ykr-NfvVpvnX_spOnEKPdbq23HWWHdqW0B2NHz84fXunoZ9WR6UgLTx1XsDlo04clIUrkIGmVhtF4vT31r3EEQfmTfO7YRWHt_fYJYO1_O4F0Rbi348qJn2pt-G3-pIKcB-DEuiCcDoLCDvPHiVgfc"/>
+<div class="absolute inset-0 bg-gradient-to-t from-stacey-navy/90 via-stacey-navy/20 to-transparent transition-opacity duration-300 group-hover:opacity-90"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full">
+<h3 class="text-2xl font-extrabold text-white mb-2">Residential Cleaning</h3>
+<p class="text-gray-200 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">Detailed checklists for Kitchen, Bathrooms, and Bedrooms &amp; Living Areas.</p>
+</div>
+</div>
+<!-- Deep Cleaning -->
+<div class="group relative h-96 rounded-3xl overflow-hidden shadow-soft cursor-pointer">
+<img alt="Deep Cleaning" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida/AP1WRLunmfyZaQa10Hsr30RuhhuiI74vNCroL2MFmbx3_4N-20swT86WFMuaj0JdxuK81BsvaJ5KS638-enVNZCzscc3h3YjnVznTeomjnLqL87Pl-yQLox9t72OJkoDiUXxOoJ0H0x3GkgIe1rpcurGPX7BN_MY_qOoKRmoDWi5iN5TQ5pNLdrIcoquuxUFnuCMrx_PJsracw1rwZpy5E5r_dOc6yfO5-b-nsV4mI0qTfWPzvaKipulcLsBvQA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-stacey-navy/90 via-stacey-navy/20 to-transparent transition-opacity duration-300 group-hover:opacity-90"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full">
+<h3 class="text-2xl font-extrabold text-white mb-2">Deep Cleaning</h3>
+<p class="text-gray-200 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">Sometimes your home needs more. Detailed kitchen cleaning and additional attention to buildup. That’s what we want you to feel.</p>
+</div>
+</div>
+<!-- Move-In / Out -->
+<div class="group relative h-96 rounded-3xl overflow-hidden shadow-soft cursor-pointer">
+<img alt="Move-In / Out" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida/AP1WRLv9Yto3eQf_3vky9BgAwPpOSp4nVKttJMdkW2O_S9FSmBrSYQsVzYEPkVsyICt2oLUfavLGeLUDzoFvM05vvL6JfIIzNAScriXfLPNJYLCqHM6MWDafrw-z6DepbJZIEVNIzJMhn9q3j0tFqfuYZ2xC64mcUX3L4uDPtXv4jOh1zU6Vr6QLRy31eSD5GuJCC6X0fiPRvckDdV8_7sXJTQPYLHA34SUjkrjy61zjABmwMFHJI5nDF_Q8I-s"/>
+<div class="absolute inset-0 bg-gradient-to-t from-stacey-navy/90 via-stacey-navy/20 to-transparent transition-opacity duration-300 group-hover:opacity-90"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full">
+<h3 class="text-2xl font-extrabold text-white mb-2">Move-In &amp; Move-Out</h3>
+<p class="text-gray-200 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">Moving is already stressful enough. Perfect for transitions, ensuring a spotless start.</p>
+</div>
+</div>
+<!-- Airbnb & Rental -->
+<div class="group relative h-96 rounded-3xl overflow-hidden shadow-soft cursor-pointer">
+<img alt="Airbnb &amp; Rental Cleaning" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida/AP1WRLv2yIREH6Q4dsOQ9kDg6g7cFd0pecMfJNWbwIOd4gOiKnCurfInlgutph2gG7xhb8n-baaeBDqcBfmd4rg2afJ2RePE0Z13UdrzdBGx_m5SVxbOd5L0jkn0TsuliCWuoIPj3ikXnlR84UdMjRJx6p3uBsd869VTh4AP1-uyDRBjCaRGXFb9jnmljTIuczdmrzCK79LLIZRzt7Hd6acuinMzzRnZ442enq5OZszYYxCPYOveY4db694rBkHH"/>
+<div class="absolute inset-0 bg-gradient-to-t from-stacey-navy/90 via-stacey-navy/20 to-transparent transition-opacity duration-300 group-hover:opacity-90"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full">
+<h3 class="text-2xl font-extrabold text-white mb-2">Airbnb &amp; Rental</h3>
+<p class="text-gray-200 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">Your next guest's experience is our priority. Professional cleaning solutions.</p>
+</div>
+</div></div>
+</div>
+</section>
+<!-- SECTION 4: OUR WORK -->
+<section class="py-24 bg-white" id="our-work">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16 reveal active">
+<span class="text-stacey-pink font-bold uppercase tracking-wider text-sm mb-2 block">Our Work</span>
+<h2 class="text-4xl md:text-5xl font-extrabold text-stacey-navy mb-4">
+                    See the Stacey Cleaning Difference
+                </h2>
+<p class="text-gray-600 max-w-3xl mx-auto text-lg md:text-xl">
+                    Sparkling kitchens, Fresh, sanitized bathrooms, and spotless living spaces. See the difference a professional clean can make. We take pride in delivering spotless spaces.
+                </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 reveal active lg:grid-cols-2 gap-12">
+<!-- Kitchen Transformation -->
+<div class="space-y-4 mb-8">
+<h3 class="text-2xl font-bold text-stacey-navy">Kitchen Transformation</h3>
+<div class="bg-stacey-gray rounded-3xl overflow-hidden shadow-soft relative group border-4 border-stacey-pink h-full">
+<img alt="Kitchen Before and After" class="w-full h-full object-cover aspect-[4/3]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2UiJ8EvLwk1ApmrJAOh91UIArawVUUOQwNwslOBghLFoo_XAdkYNn8Gpx39ExzgO3lRigVqcNNbMJ1kBVGnYi3heIyTWyGkSVyshn7liKLKkTX5CtNzURkLETEhCP0_CZdaP1B8egS9CCUHFr7KlsJjHAeBJcnB9m9pYJasqc11YIYOaiEfmjF9xF3l4zDhje6Y50MRW5Cr-9qOCuSz2ULzWvZraPFn9hCByjuTKfDq8EhF0RLi7gbQ"/>
+<div class="absolute top-4 left-4 bg-stacey-navy px-3 py-1 rounded-full shadow-sm">
+<span class="text-white font-bold text-sm uppercase tracking-wider">Before</span>
+</div>
+<div class="absolute top-4 right-4 bg-stacey-pink px-3 py-1 rounded-full shadow-sm">
+<span class="text-white font-bold text-sm uppercase tracking-wider">After</span>
+</div>
+</div>
+</div>
+<!-- Bathroom Revival -->
+<div class="space-y-4 mb-8">
+<h3 class="text-2xl font-bold text-stacey-navy">Bathroom Revival</h3>
+<div class="bg-stacey-gray rounded-3xl overflow-hidden shadow-soft relative group border-4 border-stacey-pink h-full">
+<img alt="Bathroom Before and After" class="w-full h-full object-cover aspect-[4/3]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_-o6ykjYcH7p_o58BAYlhz2ck2IufVIEnXtg2WLlS5TjPfYS8gl04AexuL5eHHjSaW7fH0KJYu1qtHGFO2Zpfske-9VkjHWenVR5TcgPgEGBFuFl2xGhqPkYK2BSPt1Zhb6Mv-iiO6mqTePQ78AYNblm8CcwdJfBfW4i5ynRrwHh2odpKZ_xpG-U-Pdq0ns8L2PVJrxk-HTgK4vrf1aBKgXFl9wFRDCrbbMnyScSpEKSklOWyQZaX6Q"/>
+<div class="absolute top-4 left-4 bg-stacey-navy px-3 py-1 rounded-full shadow-sm">
+<span class="text-white font-bold text-sm uppercase tracking-wider">Before</span>
+</div>
+<div class="absolute top-4 right-4 bg-stacey-pink px-3 py-1 rounded-full shadow-sm">
+<span class="text-white font-bold text-sm uppercase tracking-wider">After</span>
+</div>
+</div>
+</div>
+<!-- Stovetop Detailing -->
+<div class="space-y-4 mb-8">
+<h3 class="text-2xl font-bold text-stacey-navy">Stovetop Detailing</h3>
+<div class="bg-stacey-gray rounded-3xl overflow-hidden shadow-soft relative group border-4 border-stacey-pink h-full">
+<img alt="Stovetop Before and After" class="w-full h-full object-cover aspect-[4/3]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnL8B--Zvh3ul5hYTtxhCzkalG0MVV2-KIl22LwLhlxve2aPrwpeMyjpI3IzBxdwfVF9nm1JLXqLvSxnq0bJXUqdcDK-iDJHxJyzrDYsLMl047GL_XyfaLqicomDpzwmkMsLP6AS23RXZMxu48qYPMblQLLmsOzQRHzWzCy1Hu_3neRJgCWwAud0zsPiqEByAa9Jl1Qu4_H2iPzBttkBMmLSqI2ZrYDxCM3O2o_Dbz1Z6WTSAmFWbHog"/>
+<div class="absolute top-4 left-4 bg-stacey-navy px-3 py-1 rounded-full shadow-sm">
+<span class="text-white font-bold text-sm uppercase tracking-wider">Before</span>
+</div>
+<div class="absolute top-4 right-4 bg-stacey-pink px-3 py-1 rounded-full shadow-sm">
+<span class="text-white font-bold text-sm uppercase tracking-wider">After</span>
+</div>
+</div>
+</div>
+<!-- Sink Polishing -->
+<div class="space-y-4 mb-8">
+<h3 class="text-2xl font-bold text-stacey-navy">Sink Polishing</h3>
+<div class="bg-stacey-gray rounded-3xl overflow-hidden shadow-soft relative group border-4 border-stacey-pink h-full">
+<img alt="Sink Before and After" class="w-full h-full object-cover aspect-[4/3]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB43y1TKI6Jcjq8BzXutIA55h9tYsdv3BpeH11JnTz156FmG30LUUMsIZoiyKNa5jjubfpMLsB4mwdgdcTJAikWCZ80gaP4k0ofBPWjilaK9Lbk1o0qtMf70VV8g2UJAEDaFKtVwWfIyeBPlT5LafuVHSIAF_rd0OEOjPXQn-4SsqMuYHzLufCV1qhALJYLZ5k91wOpTeh0fu-AyYf_2mvyJutGGhu6Jf18eQ6FKro-8GTsynb07QoiGA"/>
+<div class="absolute top-4 left-4 bg-stacey-navy px-3 py-1 rounded-full shadow-sm">
+<span class="text-white font-bold text-sm uppercase tracking-wider">Before</span>
+</div>
+<div class="absolute top-4 right-4 bg-stacey-pink px-3 py-1 rounded-full shadow-sm">
+<span class="text-white font-bold text-sm uppercase tracking-wider">After</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 5: REVIEWS -->
+<section class="py-24 bg-stacey-pink relative overflow-hidden" id="contact-form-section">
+<div class="absolute inset-0 opacity-10 bg-pattern"></div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+<div class="flex flex-col lg:flex-row items-center gap-16">
+<!-- Left Side: Text Content -->
+<div class="w-full lg:w-1/2 text-white reveal active">
+<h2 class="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
+Ready to Experience<br/>Domestic Excellence?
+</h2>
+<p class="text-lg md:text-xl mb-8 opacity-90 leading-relaxed">
+Join hundreds of satisfied homeowners in PA &amp; NJ. Get your personalized, no-obligation quote in minutes and reclaim your time today.
+</p>
+<div class="space-y-6">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+<i class="fas fa-check text-lg"></i>
+</div>
+<span class="text-lg font-semibold">Premium Quality Guaranteed</span>
+</div>
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+<i class="fas fa-check text-lg"></i>
+</div>
+<span class="text-lg font-semibold">Fully Vetted &amp; Insured Staff</span>
+</div>
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+<i class="fas fa-check text-lg"></i>
+</div>
+<span class="text-lg font-semibold">Eco-Friendly Cleaning Solutions</span>
+</div>
+</div>
+</div>
+<!-- Right Side: Form Container -->
+<div class="w-full lg:w-1/2 reveal active">
+<div class="bg-white p-8 md:p-12 rounded-3xl shadow-2xl">
+<h3 class="text-2xl font-bold text-stacey-navy mb-8">Get Your Free Quote</h3>
+<form action="#" class="space-y-6" method="POST">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block text-xs font-bold text-stacey-navy uppercase tracking-wider mb-2" for="name">Full Name</label>
+<input class="w-full px-4 py-3 bg-stacey-gray border border-transparent rounded-xl focus:border-stacey-pink focus:ring-0 transition-all outline-none text-stacey-navy" id="name" placeholder="Jane Doe" required="" type="text"/>
+</div>
+<div>
+<label class="block text-xs font-bold text-stacey-navy uppercase tracking-wider mb-2" for="email">Email Address</label>
+<input class="w-full px-4 py-3 bg-stacey-gray border border-transparent rounded-xl focus:border-stacey-pink focus:ring-0 transition-all outline-none text-stacey-navy" id="email" placeholder="jane@example.com" required="" type="email"/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block text-xs font-bold text-stacey-navy uppercase tracking-wider mb-2" for="phone">Phone Number</label>
+<input class="w-full px-4 py-3 bg-stacey-gray border border-transparent rounded-xl focus:border-stacey-pink focus:ring-0 transition-all outline-none text-stacey-navy" id="phone" placeholder="(555) 000-0000" required="" type="tel"/>
+</div>
+<div>
+<label class="block text-xs font-bold text-stacey-navy uppercase tracking-wider mb-2" for="service">Service Type</label>
+<select class="w-full px-4 py-3 bg-stacey-gray border border-transparent rounded-xl focus:border-stacey-pink focus:ring-0 transition-all outline-none text-stacey-navy appearance-none" id="service" required="">
+<option value="">Select a Service</option>
+<option value="residential">Residential Cleaning</option>
+<option value="deep">Deep Cleaning</option>
+<option value="move">Move-In / Move-Out</option>
+<option value="airbnb">Airbnb &amp; Rental</option>
+</select>
+</div>
+</div>
+<div>
+<label class="block text-xs font-bold text-stacey-navy uppercase tracking-wider mb-2" for="message">How can we help?</label>
+<textarea class="w-full px-4 py-3 bg-stacey-gray border border-transparent rounded-xl focus:border-stacey-pink focus:ring-0 transition-all outline-none text-stacey-navy h-32" id="message" placeholder="Tell us about your space..."></textarea>
+</div>
+<button class="w-full bg-stacey-pink text-white py-4 rounded-full font-bold text-lg shadow-pink-glow hover:bg-pink-600 hover:shadow-lg transform hover:-translate-y-1 transition-all duration-200 uppercase tracking-widest" type="submit">
+Send Request
+</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 6: SERVICE AREAS -->
+<section class="py-24 bg-white" id="areas">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-12 reveal active">
+<h2 class="text-4xl md:text-5xl font-extrabold text-stacey-navy mb-4">
+                    Our Service Areas
+                </h2>
+<p class="text-gray-600 max-w-3xl mx-auto text-lg md:text-xl">
+                    Proudly serving homes and businesses across Pennsylvania and New Jersey.
+                </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto reveal active">
+<!-- PA -->
+<div class="bg-stacey-gray p-8 rounded-3xl">
+<h3 class="text-2xl font-bold text-stacey-navy mb-6 border-b-2 border-stacey-pink pb-2 inline-block">Pennsylvania (PA)</h3>
+<ul class="grid grid-cols-2 gap-y-3 gap-x-4 text-gray-700 text-base md:text-lg">
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Abington</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Bensalem</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Bristol</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Bryn Mawr</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Cheltenham</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Croydon</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Doylestown</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Elkins Park</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Feasterville</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Glenside</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Horsham</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Jenkintown</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> King of Prussia</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Langhorne</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Levittown</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Lower Merion</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Morrisville</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Newtown</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Norristown</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Philadelphia</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Plymouth Meeting</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Southampton</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Trevose</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Warminster</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Wayne</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Willow Grove</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Yardley</li>
+</ul>
+</div>
+<!-- NJ -->
+<div class="bg-stacey-gray p-8 rounded-3xl">
+<h3 class="text-2xl font-bold text-stacey-navy mb-6 border-b-2 border-stacey-pink pb-2 inline-block">New Jersey (NJ)</h3>
+<ul class="grid grid-cols-2 gap-y-3 gap-x-4 text-gray-700 text-base md:text-lg">
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Audubon</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Bellmawr</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Burlington</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Camden</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Cherry Hill</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Cinnaminson</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Collingswood</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Delran</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Deptford</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Gloucester City</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Haddonfield</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Lawnside</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Lindenwold</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Maple Shade</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Marlton</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Merchantville</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Moorestown</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Mount Ephraim</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Mount Laurel</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Oaklyn</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Palmyra</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Pennsauken</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Runnemede</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Somerdale</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Voorhees</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Willingboro</li>
+<li class=""><i class="fa-solid fa-location-dot text-stacey-pink text-xs mr-2"></i> Woodbury</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 7: FINAL CTA -->
+<section class="py-24 bg-stacey-navy relative overflow-hidden" id="contact">
+<!-- Background elements -->
+<div class="absolute inset-0 opacity-10 bg-pattern"></div>
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center reveal active">
+<h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6">
+                Your Home Could Be Next...
+            </h2>
+<p class="text-lg md:text-xl text-gray-300 mb-10">
+<strong>We clean. You live.</strong><br/><br/>
+                Contact us today for a free, no-obligation quote. Let us handle the cleaning so you can focus on what matters most.
+            </p>
+<div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+<a class="w-full sm:w-auto inline-flex justify-center items-center px-8 py-4 border border-transparent text-lg font-bold rounded-full text-white bg-stacey-pink hover:bg-pink-600 shadow-pink-glow transform hover:-translate-y-1 transition-all duration-200" href="#">
+                    Request a Quote Online
+                </a>
+<a class="w-full sm:w-auto inline-flex justify-center items-center px-8 py-4 border-2 border-white text-lg font-bold rounded-full text-white hover:bg-white hover:text-stacey-navy transform hover:-translate-y-1 transition-all duration-200" href="tel:+15551234567">
+<i class="fa-solid fa-phone mr-3"></i> (555) 123-4567
+                </a>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-gray-900 text-gray-300 py-16">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+<div class="col-span-1 md:col-span-1">
+<img alt="Stacey Cleaning Logo" class="h-12 mb-6 object-contain filter brightness-0 invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNtgsosz0aYRD8XGkYGd2HLATe2Bkdjg4aYrGu6lfz81XH4Ue1y8PYOmF3t2_si9NeTqCUOSk3YGGbjD49LCeBw2ny4LW5Pma4VbE1NJ1lS7_3yA4emR3I7v_hdSC4v8JUpKwtG1B6q6fXSOkvmI4-LkvHJVf5yB6sYOCXgCU8iLbSRktbfxyF7pTmQN6uQVzHV4Q9IZYunZvsLan8EGjVIQw7uLAJfNaHN7RVgOp0O1a5xnKokH-vaQM7OkfX091oJC0"/>
+<p class="text-sm text-gray-400 mb-6">Professional, reliable, and thorough cleaning services for homes and businesses across PA &amp; NJ.</p>
+<div class="flex space-x-4">
+<a class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-stacey-pink hover:text-white transition-colors text-base" href="#"><i class="fa-brands fa-facebook-f"></i></a>
+<a class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-stacey-pink hover:text-white transition-colors text-base" href="#"><i class="fa-brands fa-instagram"></i></a>
+<a class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-stacey-pink hover:text-white transition-colors text-base" href="#"><i class="fa-brands fa-yelp"></i></a>
+</div>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6 text-base">Quick Links</h4>
+<ul class="space-y-3 text-sm">
+<li class=""><a class="hover:text-stacey-pink transition-colors" href="#about">About Us</a></li>
+<li class=""><a class="hover:text-stacey-pink transition-colors" href="#services">Our Services</a></li>
+<li class=""><a class="hover:text-stacey-pink transition-colors" href="#our-work">Before &amp; After Gallery</a></li>
+<li class=""><a class="hover:text-stacey-pink transition-colors" href="#reviews">Customer Reviews</a></li>
+<li class=""><a class="hover:text-stacey-pink transition-colors" href="#areas">Service Areas</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6 text-base">Services</h4>
+<ul class="space-y-3 text-sm">
+<li class=""><a class="hover:text-stacey-pink transition-colors" href="#">Residential Cleaning</a></li>
+<li class=""><a class="hover:text-stacey-pink transition-colors" href="#">Deep Cleaning</a></li>
+<li class=""><a class="hover:text-stacey-pink transition-colors" href="#">Move-In &amp; Move-Out</a></li>
+<li class=""><a class="hover:text-stacey-pink transition-colors" href="#">Airbnb &amp; Rental</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6 text-base">Contact Info</h4>
+<ul class="space-y-4 text-sm">
+<li class="flex items-start">
+<i class="fa-solid fa-phone mt-1 mr-3 text-stacey-pink"></i>
+<div>
+<a class="hover:text-white transition-colors block" href="tel:+15551234567">(555) 123-4567</a>
+</div>
+</li>
+<li class="flex items-start">
+<i class="fa-solid fa-envelope mt-1 mr-3 text-stacey-pink"></i>
+<a class="hover:text-white transition-colors" href="mailto:hello@staceycleaning.com">hello@staceycleaning.com</a>
+</li>
+<li class="flex items-start">
+<i class="fa-solid fa-clock mt-1 mr-3 text-stacey-pink"></i>
+<span class="">Mon - Sat: 8:00 AM - 6:00 PM<br/>Sun: Closed</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+<p class="">© 2026 Stacey Cleaning. All rights reserved.</p>
+<div class="mt-4 md:mt-0 space-x-4">
+<a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-white transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- Scripts -->
+<script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on click
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.replace('bg-white/95', 'bg-white');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.replace('bg-white', 'bg-white/95');
+            }
+        });
+
+        // Scroll Reveal Animation Setup
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100; // Trigger earlier
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        // Trigger once on load
+        reveal();
+    </script>
+</body></html>
